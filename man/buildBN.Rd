@@ -18,6 +18,5 @@ A bayesian network based on pedigree evidence and QP definition.
 buildBN: a function for building the bayesian network.
 }
 \examples{
-pbn  <- initBN(toyped)
 bnet <- buildBN(pbn,QP=3)
 }

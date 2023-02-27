@@ -36,7 +36,6 @@ A bayesian network based on pedigree evidence and QP definition.
 buildCPTs: a function for building conditional probability tables based on pedigree bayesian network.
 }
 \examples{
-pbn  <- initBN(toyped)
 bnet <- buildBN(pbn,QP=3)
 bn1  <- buildCPTs(bnet)
 }
