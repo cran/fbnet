@@ -1,14 +1,12 @@
 #' initBN.fromVars: a function to initialize the bayesian network.
 #'
 #' @param bplotped An alternative ped object to be compared. 
-#' @import paramlink
 #' @import graphics
 #' @export
 #' @return A bayesian network.
 
 initBN.fromVars<-function(bplotped){
-ped1 <- FamiliasPedigree(id=persons,dadid=pid,momid=mid,sex=sex)
-
+locus <- paux <- NULL
 persons <- pid <- mid <- sex <- systems <- lLociFreq <- linkageR <- bSimuData <- simuKnownIds <- QP <- NULL
 myloci <- list()
 for(i in seq_along(systems)){
@@ -21,9 +19,6 @@ for(i in seq_along(systems)){
   freqs<-c(freqs,1-freqs)
   anames<-c(anames,"ExtraAlelle")
  } 
- locus<-FamiliasLocus(frequencies=freqs,
-                      allelenames=anames,
-                      name=systems[i])                      
  myloci[[systems[i]]]<-locus
 }
 
@@ -38,7 +33,6 @@ for(i in seq_along(linkageR)){
 }
 
  
-auxped<-paramlink::Familias2linkdat(ped1,NULL,myloci) 
 
 if(bSimuData){ 
   knownIds <- simuKnownIds
@@ -46,14 +40,11 @@ if(bSimuData){
   for(i in seq_along(systems)){
    afreq <- myloci[[i]]$alleles
  
-   paux<-paramlink::markerSim(auxped,N=1,available=knownIds,alleles=names(afreq),afreq=afreq,seed=123457,verbose=FALSE)
    m <- c(matrix(paux$markerdata[[1]],ncol=2))
    m[m!=0]<-attr(paux$markerdata[[1]],"alleles")[m[m!=0]]
    mallele<- matrix(m,ncol=2)
    colnames(mallele)<-paste(paste0("locus",i),c("p","m"),sep=".")
    rownames(mallele)<-paux$orig.ids
-   maux   <- paramlink::marker(auxped,allelematrix=mallele,alleles=names(afreq),afreq=afreq,name=systems[i])
-   auxped <- paramlink::addMarker(auxped,maux)
    
    datamatrix<-cbind(datamatrix,mallele)
    datamatrix[datamatrix=="0"]<-NA   
@@ -73,8 +64,6 @@ if(bSimuData){
     anames<-c(anames,"ExtraAlelle")
    }   
   
-   maux   <- paramlink::marker(auxped,allelematrix=datamatrix[,(1:2)+2*(i-1)],alleles=anames,afreq=freqs,name=systems[i])
-   auxped <- paramlink::addMarker(auxped,maux)
   } 
   
 } 

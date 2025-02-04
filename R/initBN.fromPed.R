@@ -2,14 +2,13 @@
 #'
 #' @param bplotped An alternative ped object to be compared. 
 #' @param ped A ped object in Familias format. 
-#' @import paramlink
 #' @import graphics
 #' @export
 #' @return A bayesian network.
 
 initBN.fromPed<-function(ped,bplotped){
   lLociFreq <-  NULL
-
+locus <- paux <- NULL
 persons <- as.character(ped$orig.ids)
 pid     <- ped$ped[,"FID"];pid[pid==0]<-NA
 mid     <- ped$ped[,"MID"];mid[mid==0]<-NA
@@ -21,7 +20,6 @@ linkageR <- rep(0.5,length(systems))
 bSimuData  <- FALSE
 knownIds <- ped$available
 
-ped1 <- FamiliasPedigree(id=persons,dadid=pid,momid=mid,sex=sex)
 
 
 
@@ -36,9 +34,6 @@ for(i in seq_along(systems)){
   freqs<-c(freqs,1-freqs)
   anames<-c(anames,"ExtraAlelle")
  }
- locus<-FamiliasLocus(frequencies=freqs,
-                      allelenames=anames,
-                      name=systems[i])
  myloci[[systems[i]]]<-locus
 }
 
@@ -53,7 +48,6 @@ for(i in seq_along(linkageR)){
 }
 
 
-auxped <- paramlink::Familias2linkdat(ped1,NULL,myloci)
 auxped$markerdata <- ped$markerdata
 auxped$available  <- ped$available
 auxped$nMark      <- ped$nMark

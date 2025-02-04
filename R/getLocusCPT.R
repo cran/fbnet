@@ -4,13 +4,7 @@
 #' @param locus Specified locus.
 #' @param lumpingParameter Used for stepwise mutational model.
 #' @param renorm If "row-wise" is selected, zero probability is assigned for transitions out of range. 
-#' @import paramlink
 #' @import igraph
-#' @examples
-#' pbn  <- initBN(toyped)
-#' bnet <- buildBN(pbn,QP=3)
-#' bn1  <- buildCPTs(bnet)
-#' locCPT <- getLocusCPT(bn1,"M1")
 #' @export
 #' @return A bayesian network based on pedigree evidence and QP definition.
 

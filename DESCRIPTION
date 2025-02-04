@@ -1,6 +1,6 @@
 Package: fbnet
 Title: Forensic Bayesian Networks
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: 
    c(person(given = "Franco",
            family = "Marsico",
@@ -10,19 +10,20 @@ Authors@R:
            family = "Chernomoretz",
            role = c("aut"),
            email = "ariel@df.uba.ar"))
-Description: Open-source package for computing likelihood ratios in kinship testing and human identification cases (Chernomoretz et al. (2021) <doi:10.1016/j.fsir.2020.100132>). It has the core function of the software GENis, developed by Fundación Sadosky. It relies on a Bayesian Networks framework and is particularly well suited to efficiently perform large-size queries against databases of missing individuals (Darwiche (2009) <doi:10.1017/CBO9780511811357>).
+Description: Open-source package for computing likelihood ratios in kinship testing and human identification cases. It has the core function of the software GENis, developed by Fundación Sadosky. It relies on a Bayesian Networks framework and is particularly well suited to efficiently perform large-size queries against databases of missing individuals.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
-URL: https://github.com/MarsicoFL/fbnet
-Imports: graphics, grDevices, igraph, stats, Rsolnp, assertthat, utils,
-        paramlink
+RoxygenNote: 7.3.2
+URL: https://marsicofl.github.io/fbnet/,
+        https://github.com/MarsicoFL/fbnet
+BugReports: https://github.com/MarsicoFL/fbnet/issues
+Imports: graphics, grDevices, igraph, stats
 NeedsCompilation: no
-Packaged: 2023-07-01 17:54:11 UTC; franco
+Packaged: 2025-02-04 15:39:31 UTC; franco
 Author: Franco Marsico [aut, cre],
   Ariel Chernomoretz [aut]
 Maintainer: Franco Marsico <franco.lmarsico@gmail.com>
 Depends: R (>= 3.5.0)
 Repository: CRAN
-Date/Publication: 2023-07-01 18:20:02 UTC
+Date/Publication: 2025-02-04 16:20:06 UTC
